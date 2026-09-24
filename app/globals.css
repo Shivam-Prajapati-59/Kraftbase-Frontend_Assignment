@@ -1,26 +1,137 @@
 @import "tailwindcss";
 
+/* ============================================================
+   1. Collectedge design tokens (Figma values, single source of truth)
+   Colors + gradients are bound to Tailwind utilities via
+   `@theme inline` below — e.g. text-muted (#6D6D6D),
+   bg-hero-background, bg-hero-headline (with bg-clip-text).
+   Type scale stays inline in JSX via Tailwind arbitrary values.
+   ============================================================ */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* ---- Brand ---- */
+  --brand-deep: #1948bd; /* Figma headline gradient end + logo chip */
+  --brand-primary: #2b5ce6; /* CTA buttons, chart + donut accents */
+  --ink: #020218; /* Figma headings */
+  --muted: #6d6d6d; /* hero subcopy: 24px/36px, 500, center */
+
+  /* ---- Surfaces ---- */
+  --hero-bg: #f8faff; /* hero section fallback */
+  --chart-track: #c9d6f5; /* inactive chart bars */
+
+  /* ---- Gradients (reusable, consumed as bg-* utilities) ---- */
+  /* H1 text: 106.01deg, #020218 50.33% -> #1948BD 94.05% */
+  --gradient-hero-headline: linear-gradient(
+    106.01deg,
+    #020218 50.33%,
+    #1948bd 94.05%
+  );
+  /* Hero section bg: 183.44deg blue -> lavender -> white */
+  --gradient-hero-background: linear-gradient(
+    183.44deg,
+    rgba(202, 235, 253, 0.61) 4.45%,
+    rgba(206, 213, 249, 0.61) 20.94%,
+    rgba(255, 255, 255, 0.61) 38.74%
+  );
+  /* CTA buttons (Figma 166x44, radius 18, border 4) */
+  /* Primary fill: 93.66deg, #1952F1 0% -> #418DF8 98.87% */
+  --gradient-btn-primary: linear-gradient(
+    93.66deg,
+    #1952f1 0%,
+    #418df8 98.87%
+  );
+  /* Button border: 93.37deg, #6095DB 7.39% -> #1650EB 99.35% */
+  --gradient-btn-border: linear-gradient(
+    93.37deg,
+    #6095db 7.39%,
+    #1650eb 99.35%
+  );
+  /* Primary button glow (Figma 311x113): 181.68deg blue 40% -> transparent */
+  --gradient-btn-glow: linear-gradient(
+    181.68deg,
+    rgba(28, 82, 223, 0.4) 1.06%,
+    rgba(28, 82, 223, 0) 98.23%
+  );
+  /* Social-proof dashed rule: 90deg, black 10% -> transparent */
+  --gradient-dash-fade: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.1) 22.6%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  /* Spherical wash behind join-row -> marquee (Figma 1204x215) */
+  --gradient-marquee-glow: linear-gradient(
+    173.26deg,
+    #ced5f9 33.64%,
+    #caebfd 61.84%
+  );
+  /* Page wash below hero title -> description -> upcoming sections
+     (Figma 2382x1017): 183.44deg blue -> lavender -> white */
+  --gradient-page-wash: linear-gradient(
+    183.44deg,
+    rgba(202, 235, 253, 0.61) 4.45%,
+    rgba(206, 213, 249, 0.61) 16.99%,
+    rgba(255, 255, 255, 0.61) 38.74%
+  );
+  /* Section H1 (For Lenders): 109.6deg, #020218 52.82% -> #1948BD 103.54% */
+  --gradient-section-headline: linear-gradient(
+    109.6deg,
+    #020218 52.82%,
+    #1948bd 103.54%
+  );
 }
 
+/* ============================================================
+   2. Tailwind theme bindings
+   Maps the tokens above to utilities like bg-brand-primary,
+   text-ink, bg-hero-bg. `@theme inline` keeps them referencing
+   the :root variables (single source of truth).
+   ============================================================ */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-primary: var(--brand-primary);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-hero-bg: var(--hero-bg);
+  --color-chart-track: var(--chart-track);
+
+  /* Reusable gradients -> bg-* utilities (no custom classes) */
+  --background-image-hero-headline: var(--gradient-hero-headline);
+  --background-image-hero-background: var(--gradient-hero-background);
+  --background-image-btn-primary: var(--gradient-btn-primary);
+  --background-image-btn-border: var(--gradient-btn-border);
+  --background-image-btn-glow: var(--gradient-btn-glow);
+  --background-image-dash-fade: var(--gradient-dash-fade);
+  --background-image-marquee-glow: var(--gradient-marquee-glow);
+  --background-image-page-wash: var(--gradient-page-wash);
+  --background-image-section-headline: var(--gradient-section-headline);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #ffffff;
     --foreground: #ededed;
   }
 }
 
+/* ============================================================
+   3. Base
+   ============================================================ */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Inter, Arial, Helvetica, sans-serif;
 }
+
+/* ============================================================
+   4. No custom classes.
+   Reusable text/bg gradients come from the @theme bindings above:
+   - H1 text -> `bg-hero-headline bg-clip-text text-transparent`
+   - Hero section bg -> `bg-hero-background`
+   - CTA buttons -> `bg-btn-border` (4px ring) + `bg-btn-primary`
+   Type scale stays in JSX via Tailwind arbitrary values.
+   ============================================================ */
