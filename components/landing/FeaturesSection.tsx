@@ -1,8 +1,9 @@
 import React from 'react'
+import LendersGrid from '@/components/landing/features/LendersGrid'
 
 const FeaturesSection = () => {
     return (
-        <section className="px-5 py-16">
+        <section id="lenders" className="px-5 py-16 scroll-mt-28">
             <div className="mx-auto flex w-full max-w-[1133px] flex-col items-center gap-3 text-center">
                 <p className="bg-btn-primary bg-clip-text font-sans text-[clamp(1rem,0.85rem+0.8vw,1.5rem)] font-bold capitalize leading-[1] tracking-[0] text-transparent">
                     For Lenders
@@ -13,6 +14,7 @@ const FeaturesSection = () => {
                     </span>
                 </h1>
             </div>
+            <LendersGrid />
         </section>
     )
 }

@@ -21,10 +21,10 @@ const HeroSection = () => {
             </p>
 
             <div className="mt-7 flex flex-col items-center justify-center gap-8 sm:flex-row sm:gap-10 md:mt-10">
-                <Button variant="primary" ringColorClass="outline-[#00000014]" className="sm:h-[64px] sm:w-[218px] sm:max-w-none">
+                <Button variant="primary" ringColorClass="outline-[#00000014]" className="sm:h-[64px] sm:w-[218px] sm:max-w-none" href="#lenders">
                     Get Started <MoveUpRight size={16} aria-hidden="true" />
                 </Button>
-                <Button variant="sky" ringColorClass="outline-[#00000014]" className="relative z-10 sm:h-[64px] sm:w-[218px] sm:max-w-none">
+                <Button variant="sky" ringColorClass="outline-[#00000014]" className="relative z-10 sm:h-[64px] sm:w-[218px] sm:max-w-none" href="#lenders">
                     How we work <MoveDownRight size={16} aria-hidden="true" />
                 </Button>
             </div>

@@ -80,6 +80,44 @@
     #020218 52.82%,
     #1948bd 103.54%
   );
+  /* Grid card title: 102.56deg, #020218 49% -> #1948BD 111.04% */
+  --gradient-card-title: linear-gradient(
+    102.56deg,
+    #020218 49%,
+    #1948bd 111.04%
+  );
+  /* Data card panel base: faint navy tint over 60% white */
+  --gradient-data-panel: linear-gradient(
+      170.71deg,
+      rgba(5, 18, 51, 0.0192) 26.56%,
+      rgba(5, 18, 51, 0.0234) 97.71%
+    ),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6));
+  /* Data-driven card visual: radial wash, sky -> lavender */
+  --gradient-data-visual: radial-gradient(
+    38.71% 39.26% at 17.43% 11.06%,
+    rgba(175, 213, 234, 0.6) 0%,
+    rgba(206, 213, 249, 0.6) 100%
+  );
+  /* Data card orb (solid sky -> lavender, darken blend) */
+  --gradient-data-orb: radial-gradient(
+    42.99% 42.96% at 30.18% 56.97%,
+    #afd5ea 0%,
+    #ced5f9 100%
+  );
+  /* Dashed + tile fill: primary gradient at 14% alpha */
+  --gradient-tile-fill: linear-gradient(
+    93.66deg,
+    rgba(25, 82, 241, 0.14) 0%,
+    rgba(65, 141, 248, 0.14) 98.87%
+  );
+  /* Satellite circles: white -> pale lavender -> white */
+  --gradient-satellite: linear-gradient(
+    167.72deg,
+    #ffffff 13.13%,
+    #eeeffa 51.81%,
+    #ffffff 88.32%
+  );
 }
 
 /* ============================================================
@@ -109,12 +147,19 @@
   --background-image-marquee-glow: var(--gradient-marquee-glow);
   --background-image-page-wash: var(--gradient-page-wash);
   --background-image-section-headline: var(--gradient-section-headline);
+  --background-image-card-title: var(--gradient-card-title);
+  --background-image-data-panel: var(--gradient-data-panel);
+  --background-image-data-visual: var(--gradient-data-visual);
+  --background-image-data-orb: var(--gradient-data-orb);
+  --background-image-data-orb: var(--gradient-data-orb);
+  --background-image-tile-fill: var(--gradient-tile-fill);
+  --background-image-satellite: var(--gradient-satellite);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #ffffff;
-    --foreground: #ededed;
+    --foreground: #171717;
   }
 }
 
