@@ -118,6 +118,24 @@
     #eeeffa 51.81%,
     #ffffff 88.32%
   );
+  /* Gauge card face: white fading out downward */
+  --gradient-glass-fade: linear-gradient(
+    180deg,
+    #ffffff 3.8%,
+    rgba(255, 255, 255, 0) 66.33%
+  );
+  /* Gauge card inner sheen: transparent -> pale lavender */
+  --gradient-panel-sheen: linear-gradient(
+    3.26deg,
+    rgba(255, 255, 255, 0) 3.26%,
+    rgba(227, 230, 250, 0.3) 88.12%
+  );
+  /* Testimonial glow orb */
+  --gradient-testi-orb: radial-gradient(
+    38.55% 36.32% at 44.7% 69.05%,
+    rgba(208, 237, 250, 0.9) 0%,
+    rgba(140, 143, 255, 0.279) 100%
+  );
 }
 
 /* ============================================================
@@ -154,6 +172,9 @@
   --background-image-data-orb: var(--gradient-data-orb);
   --background-image-tile-fill: var(--gradient-tile-fill);
   --background-image-satellite: var(--gradient-satellite);
+  --background-image-glass-fade: var(--gradient-glass-fade);
+  --background-image-panel-sheen: var(--gradient-panel-sheen);
+  --background-image-testi-orb: var(--gradient-testi-orb);
 }
 
 @media (prefers-color-scheme: dark) {

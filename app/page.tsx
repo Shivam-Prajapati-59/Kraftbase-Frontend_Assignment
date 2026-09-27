@@ -1,5 +1,7 @@
 import HeroSection from "@/components/landing/HeroSection";
 import FeaturesSection from "@/components/landing/FeaturesSection";
+import AgenciesSection from "@/components/landing/AgenciesSection";
+import TestimonialsSection from "@/components/landing/TestimonialsSection";
 import Navbar from "@/components/landing/Navbar";
 
 export default function Home() {
@@ -8,6 +10,8 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <FeaturesSection />
+      <AgenciesSection />
+      <TestimonialsSection />
     </div>
   );
 }
