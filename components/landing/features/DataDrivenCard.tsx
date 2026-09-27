@@ -20,10 +20,6 @@ const DataDrivenCard = () => {
             </div>
             <div className="bg-data-panel relative mr-auto aspect-[720/455] w-full max-w-[720px] overflow-hidden rounded-[40px] border-2 border-[#0000000A] backdrop-blur-[84px]">
                 <CardBackdrop />
-                <span
-                    aria-hidden="true"
-                    className="bg-data-visual absolute top-[8%] right-[4%] bottom-[8%] left-[54%] rounded-[380px] blur-[75px]"
-                />
                 <div className="absolute top-[8.8%] left-[3.5%] z-10 aspect-[873/833] w-[59%]">
                     <Image
                         src="/assets/card21.png"

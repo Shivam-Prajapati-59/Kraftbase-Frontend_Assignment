@@ -1,9 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Image from 'next/image'
 import { motion, useAnimationControls, useReducedMotion } from 'motion/react'
-import { Pause, Play } from 'lucide-react'
 
 const LOGOS = [
     { src: '/assets/image3.png', alt: 'BAJAJ Allianz' },
@@ -18,10 +17,9 @@ const LOGOS = [
 const LogoMarquee = () => {
     const reduceMotion = useReducedMotion()
     const controls = useAnimationControls()
-    const [paused, setPaused] = useState(false)
 
     useEffect(() => {
-        if (reduceMotion || paused) {
+        if (reduceMotion) {
             controls.stop()
         } else {
             controls.start({
@@ -29,7 +27,7 @@ const LogoMarquee = () => {
                 transition: { duration: 32, ease: 'linear', repeat: Infinity },
             })
         }
-    }, [paused, reduceMotion, controls])
+    }, [reduceMotion, controls])
 
     if (reduceMotion) {
         return (
@@ -37,7 +35,7 @@ const LogoMarquee = () => {
                 {LOGOS.map((logo) => (
                     <span
                         key={logo.src}
-                        className="flex items-center rounded-xl border border-black/[0.06] bg-white px-6 py-3 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+                        className="flex items-center rounded-2xl border border-black/[0.04] bg-white px-6 py-3 shadow-[0_16px_40px_rgba(25,72,189,0.10)]"
                     >
                         <Image
                             src={logo.src}
@@ -63,7 +61,7 @@ const LogoMarquee = () => {
                         <span
                             key={`${logo.src}-${index}`}
                             aria-hidden={index >= LOGOS.length}
-                            className="flex shrink-0 items-center rounded-xl border border-black/[0.06] bg-white px-6 py-3 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+                            className="flex shrink-0 items-center rounded-2xl border border-black/[0.04] bg-white px-6 py-3 shadow-[0_16px_40px_rgba(25,72,189,0.10)]"
                         >
                             <Image
                                 src={logo.src}
@@ -75,22 +73,6 @@ const LogoMarquee = () => {
                         </span>
                     ))}
                 </motion.div>
-            </div>
-            <div className="mt-4 flex justify-center">
-                <button
-                    type="button"
-                    onClick={() => setPaused((v) => !v)}
-                    aria-pressed={paused}
-                    aria-label={paused ? 'Resume logo marquee' : 'Pause logo marquee'}
-                    className="flex items-center gap-2 rounded-full border border-black/[0.06] bg-white px-4 py-2 font-sans text-[13px] font-medium text-muted shadow-sm transition-colors hover:text-ink"
-                >
-                    {paused ? (
-                        <Play size={14} aria-hidden="true" />
-                    ) : (
-                        <Pause size={14} aria-hidden="true" />
-                    )}
-                    {paused ? 'Resume' : 'Pause'}
-                </button>
             </div>
         </div>
     )

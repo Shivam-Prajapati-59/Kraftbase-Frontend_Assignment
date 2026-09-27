@@ -1,3 +1,7 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
+import { animate, useInView, useReducedMotion } from 'motion/react'
 import FolderCheckIcon from '@/components/ui/FolderCheckIcon'
 import NetworkIcon from '@/components/ui/NetworkIcon'
 import SearchBadgeIcon from '@/components/ui/SearchBadgeIcon'
@@ -19,7 +23,47 @@ const BULLETS = [
     },
 ]
 
+// `start` is now driven from the parent's single useInView trigger, rather than
+// this component watching the viewport itself — that's what keeps it in lockstep
+// with GaugeDial's wipe, since both fire off the exact same scroll event.
+const CountUp = ({ to, start, className }: { to: number; start: boolean; className?: string }) => {
+    const ref = useRef<HTMLSpanElement>(null)
+    const reduceMotion = useReducedMotion()
+    const hasStarted = useRef(false)
+
+    useEffect(() => {
+        const node = ref.current
+        if (node === null || !start || hasStarted.current) return
+        hasStarted.current = true
+
+        if (reduceMotion) {
+            node.textContent = `${to}%`
+            return
+        }
+        const controls = animate(0, to, {
+            duration: 1.8,
+            ease: 'easeOut',
+            onUpdate: (value) => {
+                node.textContent = `${Math.round(value)}%`
+            },
+        })
+        return () => controls.stop()
+    }, [start, reduceMotion, to])
+
+    return (
+        <span ref={ref} className={className}>
+            0%
+        </span>
+    )
+}
+
 const AgenciesSection = () => {
+    const statRef = useRef<HTMLDivElement>(null)
+    // Single trigger for the whole stat card — both the gauge wipe and the
+    // number count-up read off this same boolean, so they start on the exact
+    // same frame instead of each running its own (slightly different) inView check.
+    const inView = useInView(statRef, { once: true, margin: '-64px' })
+
     return (
         <section className="px-5 py-16 md:py-24">
             <div className="mx-auto flex w-full max-w-[1188px] flex-col items-center gap-3 text-center">
@@ -63,9 +107,14 @@ const AgenciesSection = () => {
                             <p className="bg-card-title absolute top-[5.2%] left-[3.8%] w-[75.8%] bg-clip-text font-sans text-[clamp(1.0625rem,0.9rem+0.85vw,1.625rem)] font-medium leading-[1.385] tracking-[-0.05em] text-transparent">
                                 Unlock more business without increasing operational overhead
                             </p>
-                            <div className="absolute top-[30%] left-1/2 w-[72%] -translate-x-1/2 text-center sm:w-[55%] lg:w-[44.6%]">
-                                <GaugeDial />
-                                <p className="-mt-[6%] text-center font-sans text-[clamp(2rem,1.4rem+3vw,3.3125rem)] font-semibold leading-[1.09] tracking-[-0.04em] text-[#242424]">70%</p>
+                            <div
+                                ref={statRef}
+                                className="absolute top-[30%] left-1/2 w-[72%] -translate-x-1/2 text-center sm:w-[55%] lg:w-[44.6%]"
+                            >
+                                <GaugeDial start={inView} />
+                                <p className="-mt-[6%] text-center font-sans text-[clamp(2rem,1.4rem+3vw,3.3125rem)] font-semibold leading-[1.09] tracking-[-0.04em] text-[#242424]">
+                                    <CountUp to={70} start={inView} />
+                                </p>
                                 <p className="mt-3 font-sans text-[clamp(0.7rem,0.6rem+1.2vw,0.8125rem)] font-semibold text-ink">
                                     Your DPD Resolution Rate is Good
                                 </p>

@@ -15,7 +15,12 @@ const Navbar = () => {
     const [open, setOpen] = useState(false)
 
     return (
-        <header className="sticky top-[24px] z-50 mx-auto mt-[24px] flex h-[80px] w-[min(1094px,calc(100%-2rem))] items-center justify-between gap-4 rounded-[32px] bg-[#ffffff1a] py-3 pr-3 pl-5 shadow-[0px_0px_54px_0px_#124E8E24,inset_0px_0px_13px_0px_#124E8E0D] backdrop-blur-[64px] lg:pr-4 lg:pl-7">
+        <header className="sticky top-[18px] z-50 mx-auto mt-[18px] flex h-[91px] w-[min(1106px,calc(100%-2rem))] items-center justify-center px-[6px]">
+            <span
+                aria-hidden="true"
+                className="absolute inset-0 rounded-[36px] border border-white/40 bg-[#FFFFFF2E] mix-blend-luminosity backdrop-blur-[100px] backdrop-saturate-150"
+            />
+            <div className="relative flex h-[80px] w-full items-center justify-between gap-4 rounded-[32px] border border-[#0000001A] bg-white py-3 pr-3 pl-5 shadow-[0px_0px_54px_0px_#124E8E24,inset_0px_0px_13px_0px_#124E8E0D] outline-3 outline-solid outline-[#00000014] outline-offset-2 backdrop-blur-[80px] lg:pr-4 lg:pl-7">
             <a href="#" className="flex shrink-0 items-center gap-2">
                 <span className="flex items-center justify-center rounded-[8px] bg-[#2B5CE6] p-1.5">
                     <ArrowUpRight size={18} className="text-white" aria-hidden="true" />
@@ -102,6 +107,7 @@ const Navbar = () => {
                     </span>
                 </nav>
             )}
+            </div>
         </header>
     )
 }

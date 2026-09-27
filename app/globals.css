@@ -136,6 +136,13 @@
     rgba(208, 237, 250, 0.9) 0%,
     rgba(140, 143, 255, 0.279) 100%
   );
+  /* Footer wash: blue -> lavender -> white */
+  --gradient-footer: linear-gradient(
+    106.19deg,
+    rgba(202, 235, 253, 0.99) 13.24%,
+    rgba(206, 213, 249, 0.99) 51.72%,
+    rgba(255, 255, 255, 0.99) 93.28%
+  );
 }
 
 /* ============================================================
@@ -175,6 +182,7 @@
   --background-image-glass-fade: var(--gradient-glass-fade);
   --background-image-panel-sheen: var(--gradient-panel-sheen);
   --background-image-testi-orb: var(--gradient-testi-orb);
+  --background-image-footer: var(--gradient-footer);
 }
 
 @media (prefers-color-scheme: dark) {

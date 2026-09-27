@@ -90,7 +90,6 @@ const TestimonialCard = ({ item, dimmed }: { item: Testimonial; dimmed?: boolean
 const TestimonialsSection = () => {
     const trackRef = useRef<HTMLDivElement>(null)
     const [active, setActive] = useState(2)
-    const [auto, setAuto] = useState(true)
     const activeRef = useRef(2)
     const reduceMotion = useReducedMotion()
 
@@ -151,18 +150,8 @@ const TestimonialsSection = () => {
         [centerOn],
     )
 
-    useEffect(() => {
-        if (!auto || reduceMotion) return
-        const timer = window.setInterval(() => go(1), 6000)
-        return () => window.clearInterval(timer)
-    }, [auto, reduceMotion, go])
-
     return (
-        <section
-            className="px-5 py-16 md:py-24"
-            onMouseEnter={() => setAuto(false)}
-            onMouseLeave={() => setAuto(true)}
-        >
+        <section className="px-5 py-16 md:py-24">
             <motion.div
                 initial={reduceMotion ? false : { opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
