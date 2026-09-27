@@ -4,6 +4,7 @@ import Button from '@/components/ui/Button'
 import LogoMarquee from '@/components/landing/LogoMarquee'
 import HeroBackground from '@/components/landing/HeroBackground'
 import HeroCollage from '@/components/landing/HeroCollage'
+import HeroHeadline from '@/components/landing/HeroHeadline'
 import { MoveDownRight, MoveUpRight } from 'lucide-react'
 
 const EYEBROW_AVATARS = [
@@ -14,8 +15,11 @@ const EYEBROW_AVATARS = [
 
 
 const HeroSection = () => {
+    // Capped at ~content height: on very tall viewports (4K) an uncapped
+    // min-h-screen left a huge void between the hero content and the
+    // features section. Below the cap this is identical to min-h-screen.
     return (
-        <section className="relative z-0 min-h-screen px-5 pt-16 sm:pt-20">
+        <section className="relative z-0 min-h-[min(100svh,1100px)] px-5 pt-16 sm:pt-20">
             <HeroBackground />
 
             <div className="mx-auto mb-6 flex w-full max-w-[580px] flex-wrap items-center justify-center gap-4">
@@ -38,14 +42,7 @@ const HeroSection = () => {
                     Businesses Rely On Collectedge
                 </p>
             </div>
-            <h1 className="mx-auto max-w-[1057px] text-center text-balance font-sans font-semibold tracking-[-0.05em] leading-[1.12] md:leading-[1.135] text-[2.7rem] md:text-[clamp(2.5rem,1.5rem+5vw,6rem)]">
-                <span className="block bg-hero-headline bg-clip-text text-transparent md:hidden">
-                    Unified Platform<br />for Late-Stage<br />DPD Resolution.
-                </span>
-                <span className="hidden bg-hero-headline bg-clip-text text-transparent md:block">
-                    Unified Platform for Late-<br />Stage DPD Resolution.
-                </span>
-            </h1>
+            <HeroHeadline />
 
             <p className="mx-auto mt-5 max-w-[815px] text-center text-balance font-sans font-medium tracking-[0] leading-[1.5] text-muted text-[clamp(1rem,0.85rem+0.8vw,1.5rem)] md:mt-6">
                 Our tool is designed with agencies & collection managers in mind, ensuring user-friendly experience tailored to their needs

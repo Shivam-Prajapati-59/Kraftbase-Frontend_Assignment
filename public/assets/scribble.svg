@@ -1,0 +1,9 @@
+<svg width="194" height="31" viewBox="0 0 194 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hand-drawn underline flourish. Pure vector (no mask/pattern/texture):
+       the masked-texture original dropped its mask in some browsers and fell
+       back to a solid bar, so this draws the same navy scribble directly. -->
+  <g transform="rotate(2.7344 1 0)" stroke="#0C2265" stroke-linecap="round" fill="none">
+    <path d="M7 21 C 52 19.5, 96 17.5, 138 13.5 S 176 8.5, 188 9.5" stroke-width="5"/>
+    <path d="M14 24.5 C 58 23.5, 104 21.5, 152 17" stroke-width="3" opacity="0.65"/>
+  </g>
+</svg>
